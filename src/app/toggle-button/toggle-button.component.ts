@@ -70,7 +70,7 @@ export class ToggleButtonComponent {
 
     try {
       const response = await this.http
-        .post('http://172.31.39.79:8000/synthesize-speech/', formData, {
+        .post('https://ttsbackend.inraysmiv.xyz/synthesize-speech/', formData, {
           responseType: 'blob',
         })
         .toPromise();
