@@ -1,0 +1,9 @@
+<button *ngIf="!isPlayingAudio" (click)="toggleRecording()" class="toggle-btn">
+  {{ buttonText }}
+</button>
+
+<app-bouncing-circle></app-bouncing-circle>
+
+<div *ngIf="isPlayingAudio">
+  <app-stop-button (stopAudio)="stopAudioPlayback()"></app-stop-button>
+</div>
