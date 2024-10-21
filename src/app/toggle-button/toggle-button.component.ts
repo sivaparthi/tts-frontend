@@ -12,7 +12,7 @@ import { BouncingCircleComponent } from '../bouncing-circle/bouncing-circle.comp
   styleUrl: './toggle-button.component.css',
 })
 export class ToggleButtonComponent {
-  buttonText: string = 'Start';
+  buttonText: string = 'Start listening';
   mediaRecorder: any;
   audioChunks: any[] = [];
   isRecording: boolean = false;
@@ -29,7 +29,7 @@ export class ToggleButtonComponent {
   async toggleRecording(): Promise<void> {
     if (!this.isRecording) {
       // Start recording
-      this.buttonText = 'Stop';
+      this.buttonText = 'Stop listening';
       this.isRecording = true;
       this.isAnalyzing = true; // Start sound-based bounce
       this.cdr.detectChanges()
@@ -57,7 +57,7 @@ export class ToggleButtonComponent {
       this.mediaRecorder.start();
     } else {
       // Stop recording
-      this.buttonText = 'Start';
+      this.buttonText = 'Start listening';
       this.isRecording = false;
       this.isAnalyzing = false; // Stop sound-based bounce
       this.stopAnalyzingAudio();
