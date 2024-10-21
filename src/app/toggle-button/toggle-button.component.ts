@@ -32,28 +32,37 @@ export class ToggleButtonComponent {
       this.buttonText = 'Stop';
       this.isRecording = true;
       this.isAnalyzing = true; // Start sound-based bounce
-      this.cdr.detectChanges()
+      this.cdr.detectChanges();
       await this.startAnalyzingAudio();
-
-      // Request access to the microphone
+  
+      // Request access to the microphone again each time
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
+      this.microphoneStream = stream;
+  
       // Set up MediaRecorder with MIME type for m4a (audio/mp4)
       this.mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/mp4' });
-
+  
       this.mediaRecorder.ondataavailable = (event: any) => {
         this.audioChunks.push(event.data);
       };
-
+  
       this.mediaRecorder.onstop = async () => {
-        // Create a Blob from the audio chunks
         const audioBlob = new Blob(this.audioChunks, { type: 'audio/mp4' });
         this.audioChunks = [];
-
-        // Send the recorded audio to the backend API
-        this.sendAudioToServer(audioBlob);
+  
+        if (audioBlob.size > 0) {
+          this.sendAudioToServer(audioBlob);
+        } else {
+          console.error('Recorded Blob is empty, not sending to server');
+        }
+  
+        // Stop and release the microphone stream
+        if (this.microphoneStream) {
+          this.microphoneStream.getTracks().forEach((track) => track.stop());
+        }
+        this.mediaRecorder = null; // Reset MediaRecorder after stop
       };
-
+  
       this.mediaRecorder.start();
     } else {
       // Stop recording
@@ -62,7 +71,7 @@ export class ToggleButtonComponent {
       this.isAnalyzing = false; // Stop sound-based bounce
       this.stopAnalyzingAudio();
       this.mediaRecorder.stop();
-      this.cdr.detectChanges()
+      this.cdr.detectChanges();
     }
   }
 
