@@ -32,6 +32,7 @@ export class ToggleButtonComponent {
       this.buttonText = 'Stop';
       this.isRecording = true;
       this.isAnalyzing = true; // Start sound-based bounce
+      this.cdr.detectChanges()
       await this.startAnalyzingAudio();
 
       // Request access to the microphone
