@@ -6,4 +6,4 @@ RUN npm install
 RUN npm install -g @angular/cli 
 EXPOSE 8004
 # CMD ["tail", "-f", "/dev/null"]
-CMD [ "ng", "serve"]
+CMD [ "ng", "serve", "--host", "0.0.0.0"]
