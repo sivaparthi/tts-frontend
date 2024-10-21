@@ -62,6 +62,7 @@ export class ToggleButtonComponent {
       this.isAnalyzing = false; // Stop sound-based bounce
       this.stopAnalyzingAudio();
       this.mediaRecorder.stop();
+      this.cdr.detectChanges()
     }
   }
 
