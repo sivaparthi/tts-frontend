@@ -3,7 +3,7 @@ services:
   angular-app:
     build: .
     ports:
-      - "8005:80"
+      - "4200:4200"
     container_name: angular_app_container
     volumes:
       - .:/app
