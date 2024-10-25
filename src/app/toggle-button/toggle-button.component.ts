@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { StopButtonComponent } from '../stop-button/stop-button.component';
 import { NgIf } from '@angular/common';
 import { BouncingCircleComponent } from '../bouncing-circle/bouncing-circle.component';
+import RecordRTC from 'recordrtc';
 
 @Component({
   selector: 'app-toggle-button',
@@ -13,8 +14,6 @@ import { BouncingCircleComponent } from '../bouncing-circle/bouncing-circle.comp
 })
 export class ToggleButtonComponent {
   buttonText: string = 'Start Listening';
-  mediaRecorder: any;
-  audioChunks: any[] = [];
   isRecording: boolean = false;
   isAnalyzing: boolean = false; // To control when to start analyzing mic input
   audioContext: AudioContext | null = null;
@@ -23,6 +22,8 @@ export class ToggleButtonComponent {
   dataArray: Uint8Array | null = null;
   isPlayingAudio: boolean = false; // To control the display of the Stop button
   audioElement: HTMLAudioElement | null = null;
+  recorder: any; // RecordRTC instance
+  audioBlob: Blob | null = null;
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
@@ -33,47 +34,48 @@ export class ToggleButtonComponent {
       this.isRecording = true;
       this.isAnalyzing = true; // Start sound-based bounce
       this.cdr.detectChanges();
+      await this.startRecording();
       await this.startAnalyzingAudio();
-
-      // Request access to the microphone
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
-      // Check for supported MIME types
-      const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
-        ? 'audio/webm;codecs=opus'
-        : 'audio/webm';
-
-      // Set up MediaRecorder with the supported MIME type
-      this.mediaRecorder = new MediaRecorder(stream, { mimeType });
-
-      this.mediaRecorder.ondataavailable = (event: any) => {
-        this.audioChunks.push(event.data);
-      };
-
-      this.mediaRecorder.onstop = async () => {
-        // Create a Blob from the audio chunks
-        const audioBlob = new Blob(this.audioChunks, { type: mimeType });
-        this.audioChunks = [];
-
-        // Send the recorded audio to the backend API
-        this.sendAudioToServer(audioBlob);
-      };
-
-      this.mediaRecorder.start();
     } else {
       // Stop recording
       this.buttonText = 'Start Listening';
       this.isRecording = false;
       this.isAnalyzing = false; // Stop sound-based bounce
+      await this.stopRecording();
       this.stopAnalyzingAudio();
-      this.mediaRecorder.stop();
       this.cdr.detectChanges();
     }
   }
 
+  async startRecording() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.recorder = new RecordRTC(stream, { type: 'audio' });
+      this.recorder.startRecording();
+    } catch (error) {
+      console.error('Error accessing microphone:', error);
+    }
+  }
+
+  async stopRecording() {
+    return new Promise<void>((resolve) => {
+      this.recorder.stopRecording(() => {
+        this.audioBlob = this.recorder.getBlob();
+        this.recorder.getDataURL((dataURL: string) => {
+          this.cdr.detectChanges(); // Update the UI
+          if (this.audioBlob) {
+            // Send audio blob to the server
+            this.sendAudioToServer(this.audioBlob);
+          }
+        });
+        resolve();
+      });
+    });
+  }
+
   async sendAudioToServer(audioBlob: Blob) {
     const formData = new FormData();
-    formData.append('file', audioBlob, 'recording.m4a');
+    formData.append('file', audioBlob, 'recording.webm');
 
     try {
       const response = await this.http
@@ -93,6 +95,7 @@ export class ToggleButtonComponent {
       console.error('Error sending audio to server:', error);
     }
   }
+
   playAudio(audioUrl: string): void {
     this.audioElement = new Audio();
     this.audioElement.crossOrigin = 'anonymous';
@@ -100,7 +103,6 @@ export class ToggleButtonComponent {
     this.audioElement.play();
 
     this.isPlayingAudio = true; // Show the Stop button
-    console.log(this.isPlayingAudio);
     this.cdr.detectChanges();
     this.audioElement.onended = () => {
       this.isPlayingAudio = false; // Hide the Stop button when audio ends
