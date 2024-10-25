@@ -32,14 +32,19 @@ export class ToggleButtonComponent {
       this.buttonText = 'Stop';
       this.isRecording = true;
       this.isAnalyzing = true; // Start sound-based bounce
-      this.cdr.detectChanges()
+      this.cdr.detectChanges();
       await this.startAnalyzingAudio();
 
       // Request access to the microphone
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      // Set up MediaRecorder with MIME type for m4a (audio/mp4)
-      this.mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/mp4' });
+      // Check for supported MIME types
+      const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+        ? 'audio/webm;codecs=opus'
+        : 'audio/webm';
+
+      // Set up MediaRecorder with the supported MIME type
+      this.mediaRecorder = new MediaRecorder(stream, { mimeType });
 
       this.mediaRecorder.ondataavailable = (event: any) => {
         this.audioChunks.push(event.data);
@@ -47,7 +52,7 @@ export class ToggleButtonComponent {
 
       this.mediaRecorder.onstop = async () => {
         // Create a Blob from the audio chunks
-        const audioBlob = new Blob(this.audioChunks, { type: 'audio/mp4' });
+        const audioBlob = new Blob(this.audioChunks, { type: mimeType });
         this.audioChunks = [];
 
         // Send the recorded audio to the backend API
@@ -62,7 +67,7 @@ export class ToggleButtonComponent {
       this.isAnalyzing = false; // Stop sound-based bounce
       this.stopAnalyzingAudio();
       this.mediaRecorder.stop();
-      this.cdr.detectChanges()
+      this.cdr.detectChanges();
     }
   }
 
