@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/sivaparthi/tts-frontend/compare/v1.0.0...v1.0.1) (2025-01-20)
+
+
+### Bug Fixes
+
+* updated ball color ([418f276](https://github.com/sivaparthi/tts-frontend/commit/418f2764ed39578765644d1fdb2780cec88235e9))
+
 # 1.0.0 (2025-01-20)
 
 
