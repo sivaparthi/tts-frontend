@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '21'  # or your preferred Node version
+          node-version: '22'  # or your preferred Node version
 
       - name: Install dependencies
         run: npm install
