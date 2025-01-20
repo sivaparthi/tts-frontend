@@ -1,0 +1,14 @@
+# 1.0.0 (2025-01-20)
+
+
+### Bug Fixes
+
+* added semantic-release ([d2f30cc](https://github.com/sivaparthi/tts-frontend/commit/d2f30cc2249bede45d555fdc9e3edcf9061ff92b))
+
+
+### Features
+
+* testing semanting release ([8263c87](https://github.com/sivaparthi/tts-frontend/commit/8263c87374fe5c582187a277fe73e1434e4e7647))
+* testing semanting release ([a4592fa](https://github.com/sivaparthi/tts-frontend/commit/a4592fae190b15c4a1595392c1f5ca7ec0039148))
+* testing semanting release ([8ea7773](https://github.com/sivaparthi/tts-frontend/commit/8ea777352390d73458bd107932c21f1c29ae4d86))
+* testing semanting release ([c08fa1a](https://github.com/sivaparthi/tts-frontend/commit/c08fa1abe38e979486dd7136f0c2a73127a89256))
