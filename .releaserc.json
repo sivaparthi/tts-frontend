@@ -1,6 +1,27 @@
 {
-    "branches": ["main"],
-
+    "branches": [
+      {
+        "name": "dev",
+        "prerelease": false,
+        "channel": "dev"
+      },
+      {
+        "name": "qa",
+        "prerelease": true,
+        "channel": "qa"
+      },
+      {
+        "name": "UAT",
+        "prerelease": true,
+        "channel": "uat"
+      },
+      {
+        "name": "Production",
+        "prerelease": false,
+        "channel": "prod"
+      }
+    ],
+  
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
@@ -21,6 +42,13 @@
         "@semantic-release/github",
         {
           "assets": []
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "verifyRelease": "if [ \"$SEMANTIC_RELEASE_BRANCH\" != \"dev\" ] && [ \"$SEMANTIC_RELEASE_BRANCH\" != \"Production\" ]; then exit 0; fi",
+          "prepare": "if [ \"$SEMANTIC_RELEASE_BRANCH\" != \"dev\" ] && [ \"$SEMANTIC_RELEASE_BRANCH\" != \"Production\" ]; then exit 0; fi"
         }
       ]
     ]
