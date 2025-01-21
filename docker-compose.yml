@@ -5,6 +5,6 @@ services:
     ports:
       - "4200:4200"
     container_name: angular_app_container
-    # volumes:
-    #   - .:/app
+    volumes:
+      - .:/app
     restart: always

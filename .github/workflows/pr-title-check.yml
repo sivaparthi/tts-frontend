@@ -1,0 +1,21 @@
+name: PR Title Check
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+jobs:
+  check-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR Title for Semantic Keyword
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const title = pr.title;
+            const validPrefixes = ['feat:', 'fix:', 'chore:', 'docs:', 'style:', 'refactor:', 'test:', 'perf:', 'build:', 'ci:'];
+            const isValid = validPrefixes.some(prefix => title.toLowerCase().startsWith(prefix));
+            if (!isValid) {
+              core.setFailed(`PR title must start with one of the following prefixes: ${validPrefixes.join(', ')}`);
+            }
