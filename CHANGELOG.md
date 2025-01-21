@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/sivaparthi/tts-frontend/compare/v1.0.2...v1.0.3) (2025-01-21)
+
+
+### Bug Fixes
+
+* Docker issue fixed ([4f945a4](https://github.com/sivaparthi/tts-frontend/commit/4f945a4dc06d4c40bc8e84ca8b225959829e9dec))
+* updated package.json ([60c6b0a](https://github.com/sivaparthi/tts-frontend/commit/60c6b0aa2c3ff66b772ac338db043eb73cd21edc))
+* updated releaseconfig ([a27c1cc](https://github.com/sivaparthi/tts-frontend/commit/a27c1cc6466f894faae266b20f12509ac25911f4))
+
 ## [1.0.2](https://github.com/sivaparthi/tts-frontend/compare/v1.0.1...v1.0.2) (2025-01-21)
 
 
