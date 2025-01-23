@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/sivaparthi/tts-frontend/compare/v1.0.4...v1.1.0) (2025-01-23)
+
+
+### Features
+
+* updated workflow for version bumping ([0cd9005](https://github.com/sivaparthi/tts-frontend/commit/0cd90050cc86a4e05e37c87a1b7e99edc35460e2))
+
 ## [1.0.4](https://github.com/sivaparthi/tts-frontend/compare/v1.0.3...v1.0.4) (2025-01-21)
 
 
