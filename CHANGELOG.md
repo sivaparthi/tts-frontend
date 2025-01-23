@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/sivaparthi/tts-frontend/compare/v1.1.2...v1.1.3) (2025-01-23)
+
+
+### Bug Fixes
+
+* updated for version bumping ([8999b01](https://github.com/sivaparthi/tts-frontend/commit/8999b01e5e123c9aaec35db8f2a158246715c7f9))
+
 ## [1.1.2](https://github.com/sivaparthi/tts-frontend/compare/v1.1.1...v1.1.2) (2025-01-23)
 
 
