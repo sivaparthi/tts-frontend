@@ -1,3 +1,38 @@
+## [1.1.4](https://github.com/sivaparthi/tts-frontend/compare/v1.1.3...v1.1.4) (2025-01-24)
+
+
+### Bug Fixes
+
+* updated Dockerfile ([733382f](https://github.com/sivaparthi/tts-frontend/commit/733382f59a195decb78b16cb8eac2534081074ae))
+
+## [1.1.3](https://github.com/sivaparthi/tts-frontend/compare/v1.1.2...v1.1.3) (2025-01-23)
+
+
+### Bug Fixes
+
+* updated for version bumping ([8999b01](https://github.com/sivaparthi/tts-frontend/commit/8999b01e5e123c9aaec35db8f2a158246715c7f9))
+
+## [1.1.2](https://github.com/sivaparthi/tts-frontend/compare/v1.1.1...v1.1.2) (2025-01-23)
+
+
+### Bug Fixes
+
+* updated for version bumping ([d82e88f](https://github.com/sivaparthi/tts-frontend/commit/d82e88f4637c29fdc5dd45c6c6a31a51730cbe64))
+
+## [1.1.1](https://github.com/sivaparthi/tts-frontend/compare/v1.1.0...v1.1.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* updated workflow for version bumping ([7d03f01](https://github.com/sivaparthi/tts-frontend/commit/7d03f012032c91872cf9a391f632fa65ef8ea520))
+
+# [1.1.0](https://github.com/sivaparthi/tts-frontend/compare/v1.0.4...v1.1.0) (2025-01-23)
+
+
+### Features
+
+* updated workflow for version bumping ([0cd9005](https://github.com/sivaparthi/tts-frontend/commit/0cd90050cc86a4e05e37c87a1b7e99edc35460e2))
+
 ## [1.0.4](https://github.com/sivaparthi/tts-frontend/compare/v1.0.3...v1.0.4) (2025-01-21)
 
 
