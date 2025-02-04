@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/sivaparthi/tts-frontend/compare/v1.1.3...v1.1.4) (2025-01-24)
+
+
+### Bug Fixes
+
+* updated Dockerfile ([733382f](https://github.com/sivaparthi/tts-frontend/commit/733382f59a195decb78b16cb8eac2534081074ae))
+
 ## [1.1.3](https://github.com/sivaparthi/tts-frontend/compare/v1.1.2...v1.1.3) (2025-01-23)
 
 
