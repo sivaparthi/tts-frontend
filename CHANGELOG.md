@@ -1,3 +1,10 @@
+## [1.1.5-dev.3](https://github.com/sivaparthi/tts-frontend/compare/v1.1.5-dev.2...v1.1.5-dev.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* testing semantic-release version bump ([086261e](https://github.com/sivaparthi/tts-frontend/commit/086261e8a644e197138ddcac69a3346fd04ed0a5))
+
 ## [1.1.5-dev.2](https://github.com/sivaparthi/tts-frontend/compare/v1.1.5-dev.1...v1.1.5-dev.2) (2025-02-04)
 
 
