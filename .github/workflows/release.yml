@@ -1,3 +1,4 @@
+# .github/workflows/release.yml
 name: Release
 
 on:
@@ -12,21 +13,15 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch full history so semantic-release can read all tags
-
-      - name: Set up Node.js
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22'
-          cache: 'npm'
-
       - name: Install dependencies
         run: npm ci
-
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # semantic-release automatically sets SEMANTIC_RELEASE_BRANCH based on the branch pushed
         run: npx semantic-release

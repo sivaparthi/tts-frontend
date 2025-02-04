@@ -1,0 +1,42 @@
+name: Merge Prod Changes into Non-Prod Branches
+
+on:
+    workflow_run:
+      workflows:
+        - Release-Prod
+      types:
+        - completed
+    workflow_dispatch:
+
+jobs:
+  merge-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production branch
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: prod
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Merge prod into dev
+        run: |
+          git checkout dev
+          git merge prod --no-edit
+          git push origin dev
+
+      - name: Merge prod into qa
+        run: |
+          git checkout qa
+          git merge prod --no-edit
+          git push origin qa
+
+      - name: Merge prod into uat
+        run: |
+          git checkout uat
+          git merge prod --no-edit
+          git push origin uat
