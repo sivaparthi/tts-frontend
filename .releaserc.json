@@ -1,56 +1,26 @@
 {
-    "branches": [
-      {
-        "name": "dev",
-        "prerelease": false,
-        "channel": "dev"
-      },
-      {
-        "name": "qa",
-        "prerelease": true,
-        "channel": "qa"
-      },
-      {
-        "name": "UAT",
-        "prerelease": true,
-        "channel": "uat"
-      },
-      {
-        "name": "Production",
-        "prerelease": false,
-        "channel": "prod"
-      }
-    ],
-  
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "assets": ["CHANGELOG.md", "package.json", "package-lock.json"],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ],
-      [
-        "@semantic-release/github",
-        {
-          "assets": []
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "verifyRelease": "if [ \"$SEMANTIC_RELEASE_BRANCH\" != \"dev\" ] && [ \"$SEMANTIC_RELEASE_BRANCH\" != \"Production\" ]; then exit 0; fi",
-          "prepare": "if [ \"$SEMANTIC_RELEASE_BRANCH\" != \"dev\" ] && [ \"$SEMANTIC_RELEASE_BRANCH\" != \"Production\" ]; then exit 0; fi"
-        }
-      ]
-    ]
-  }
-  
+  "branches": [
+    {
+      "name": "prod"
+    },
+    {
+      "name": "uat",
+      "prerelease": "uat"
+    },
+    {
+      "name": "qa",
+      "prerelease": "qa"
+    },
+    {
+      "name": "dev",
+      "prerelease": "dev"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/git",
+    "@semantic-release/github"
+  ]
+}
