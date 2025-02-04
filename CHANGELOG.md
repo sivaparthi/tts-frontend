@@ -1,3 +1,12 @@
+## [1.1.5-dev.4](https://github.com/sivaparthi/tts-frontend/compare/v1.1.5-dev.3...v1.1.5-dev.4) (2025-02-04)
+
+
+### Bug Fixes
+
+* new fix ([33245ac](https://github.com/sivaparthi/tts-frontend/commit/33245ac8a0f9c703eacb6e3ecc2b9a305379477b))
+* new fix ([e7b9e61](https://github.com/sivaparthi/tts-frontend/commit/e7b9e61b1a82d041828ab58f649c2b223d069ff0))
+* new fix ([f55e223](https://github.com/sivaparthi/tts-frontend/commit/f55e223c635d46e06d58e4dcfe89ef035e8d564e))
+
 ## [1.1.5-dev.3](https://github.com/sivaparthi/tts-frontend/compare/v1.1.5-dev.2...v1.1.5-dev.3) (2025-02-04)
 
 
