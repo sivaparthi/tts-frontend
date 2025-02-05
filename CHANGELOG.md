@@ -1,3 +1,16 @@
+## [1.0.2](https://github.com/sivaparthi/tts-frontend/compare/v1.0.1...v1.0.2) (2025-02-05)
+
+
+### Bug Fixes
+
+* prod  release ([e17b772](https://github.com/sivaparthi/tts-frontend/commit/e17b772de166b65ab444fb7faedf000a2439e8f9))
+* rename ([05a2b59](https://github.com/sivaparthi/tts-frontend/commit/05a2b59a35f56b64b21ef5620040ed6d3b021fc3))
+* rename and workflow ([425c9ce](https://github.com/sivaparthi/tts-frontend/commit/425c9ce38d19f354045a3e2f920ef4c7360cb354))
+* versioning ([dcc623a](https://github.com/sivaparthi/tts-frontend/commit/dcc623a56eb0c1a8e5493ae1eac9b10562c83859))
+* versioning ([731fe90](https://github.com/sivaparthi/tts-frontend/commit/731fe90e4a61255968c18690c28b4f82294511de))
+* versioning ([660ccaa](https://github.com/sivaparthi/tts-frontend/commit/660ccaa225bf0bfd212e23af93ff6627cf0050ac))
+* workflow ([c33703a](https://github.com/sivaparthi/tts-frontend/commit/c33703afd53a1844b29338457b1bb8b80b303dc9))
+
 ## [1.0.1](https://github.com/sivaparthi/tts-frontend/compare/v1.0.0...v1.0.1) (2025-02-05)
 
 
