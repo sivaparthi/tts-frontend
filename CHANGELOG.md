@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/sivaparthi/tts-frontend/compare/v1.0.2...v1.1.0) (2025-02-05)
+
+
+### Bug Fixes
+
+* publish release ([75d68b5](https://github.com/sivaparthi/tts-frontend/commit/75d68b5fc558c09c86fa75029809ce3cdc33eda2))
+
+
+### Features
+
+* testing ([7a542af](https://github.com/sivaparthi/tts-frontend/commit/7a542aff305ebf5a850f7381ae8b02844a81cacc))
+
 ## [1.0.2](https://github.com/sivaparthi/tts-frontend/compare/v1.0.1...v1.0.2) (2025-02-05)
 
 
