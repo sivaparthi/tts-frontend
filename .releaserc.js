@@ -27,6 +27,15 @@ if (currentBranch === 'prod') {
         assets: ['CHANGELOG.md', 'package.json'],
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
       }
+    ],
+    // This plugin creates a GitHub release.
+    [
+      '@semantic-release/github',
+      {
+        // You can configure additional options if needed.
+        // For example, if you want to attach assets, set them here:
+        // assets: 'build/**/*'
+      }
     ]
   );
 }
