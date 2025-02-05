@@ -1,6 +1,10 @@
 // .releaserc.js
-// Determine the current branch. semantic-release sets SEMANTIC_RELEASE_BRANCH.
-const currentBranch = process.env.SEMANTIC_RELEASE_BRANCH || '';
+
+// Try to derive branch from environment variables:
+const branchFromRef = process.env.GITHUB_REF && process.env.GITHUB_REF.replace(/^refs\/heads\//, '');
+const currentBranch = process.env.SEMANTIC_RELEASE_BRANCH || branchFromRef || '';
+
+console.log('Current branch:', currentBranch); // For debugging (remove later)
 
 const plugins = [
   '@semantic-release/commit-analyzer',
@@ -19,7 +23,6 @@ if (currentBranch === 'prod') {
     [
       '@semantic-release/git',
       {
-        // These assets will be committed only in production releases.
         assets: ['CHANGELOG.md', 'package.json'],
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
       }
