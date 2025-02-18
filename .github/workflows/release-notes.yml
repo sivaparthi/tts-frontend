@@ -1,9 +1,10 @@
 name: Generate AI-Powered Release Notes
 
 on:
-  release:
-    types: [published]
-
+    release:
+      types: [published]
+    workflow_dispatch:
+        
 jobs:
   generate-release-notes:
     runs-on: ubuntu-latest
