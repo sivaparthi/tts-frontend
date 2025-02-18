@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/sivaparthi/tts-frontend/compare/v1.1.1...v1.2.0) (2025-02-18)
+
+
+### Bug Fixes
+
+* workflow fix ([2f10630](https://github.com/sivaparthi/tts-frontend/commit/2f106304be784a1e7ca0751d9fbe4c5a3e8f7efd))
+* workflow fix ([4a413cd](https://github.com/sivaparthi/tts-frontend/commit/4a413cd7d2943fca1297176696f9f8cebe8f0193))
+
+
+### Features
+
+* workflow change ([cf3ada3](https://github.com/sivaparthi/tts-frontend/commit/cf3ada31b3a0a6a4c734fee197e9e1aa3b2780f9))
+
 ## [1.1.1](https://github.com/sivaparthi/tts-frontend/compare/v1.1.0...v1.1.1) (2025-02-18)
 
 
