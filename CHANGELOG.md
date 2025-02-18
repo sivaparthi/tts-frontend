@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/sivaparthi/tts-frontend/compare/v1.2.0...v1.3.0) (2025-02-18)
+
+
+### Bug Fixes
+
+* updated artifact version ([7883833](https://github.com/sivaparthi/tts-frontend/commit/7883833c904855e7c8cea28d74d2aba322ab1a2d))
+
+
+### Features
+
+* new feature ([b0969cb](https://github.com/sivaparthi/tts-frontend/commit/b0969cb613c4d942fb4e1ba974790e1a38e2902f))
+* new release ([b8ec8fd](https://github.com/sivaparthi/tts-frontend/commit/b8ec8fd8f73fe937ca242fc14763d5f6558b3a7f))
+
 # [1.2.0](https://github.com/sivaparthi/tts-frontend/compare/v1.1.1...v1.2.0) (2025-02-18)
 
 
