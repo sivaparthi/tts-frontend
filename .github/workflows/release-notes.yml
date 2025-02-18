@@ -41,37 +41,22 @@ jobs:
           git diff $PREVIOUS_RELEASE $LATEST_RELEASE > git_diff.txt
           cat git_diff.txt
 
-      - name: Debug Groq API Response
+      - name: Call Groq API to Generate Release Notes
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          PROMPT=$(cat <<EOF
-          Generate structured release notes based on the following code changes between versions $PREVIOUS_RELEASE and $LATEST_RELEASE.
-
-          Changes:
-          $(cat git_diff.txt)
-
-          Format the release notes in markdown with these sections:
-          - **New Features**
-          - **Improvements**
-          - **Bug Fixes**
-          - **Breaking Changes** (if any)
-          - **Other Changes**
-
-          Ensure the release notes are **clear, concise, and developer-friendly**.
-          EOF
-          )
+          PROMPT=$(cat git_diff.txt | jq -Rs .)  # Convert git_diff.txt into a properly formatted JSON string
 
           FULL_RESPONSE=$(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \
             -H "Authorization: Bearer $GROQ_API_KEY" \
             -H "Content-Type: application/json" \
-            -d '{
-              "messages": [
-                {"role": "system", "content": "You are an AI assistant that generates structured and developer-friendly release notes from code changes."},
-                {"role": "user", "content": "'"$PROMPT"'"}
+            -d "{
+              \"messages\": [
+                {\"role\": \"system\", \"content\": \"You are an AI assistant that generates structured and developer-friendly release notes from code changes.\"},
+                {\"role\": \"user\", \"content\": ${PROMPT}}
               ],
-              "model": "llama-3.3-70b-versatile"
-            }')
+              \"model\": \"llama-3.3-70b-versatile\"
+            }")
 
           echo "Full API Response:"
           echo "$FULL_RESPONSE"
