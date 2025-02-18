@@ -45,14 +45,19 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          PROMPT=$(cat git_diff.txt | jq -Rs .)  # Convert git_diff.txt into a properly formatted JSON string
+          PROMPT=$(jq -Rs . <<EOF
+          These are the changes made in the codebase between the last two releases: $PREVIOUS_RELEASE → $LATEST_RELEASE.
+          
+          Below is the full diff of changes:
+          $(cat git_diff.txt)
+          EOF
+          )
 
           FULL_RESPONSE=$(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \
             -H "Authorization: Bearer $GROQ_API_KEY" \
             -H "Content-Type: application/json" \
             -d "{
               \"messages\": [
-                {\"role\": \"system\", \"content\": \"You are an AI assistant that generates structured and developer-friendly release notes from code changes.\"},
                 {\"role\": \"user\", \"content\": ${PROMPT}}
               ],
               \"model\": \"llama-3.3-70b-versatile\"
@@ -63,7 +68,6 @@ jobs:
 
           RESPONSE=$(echo "$FULL_RESPONSE" | jq -r '.choices[0].message.content')
           echo "$RESPONSE" > release_notes.txt
-
       - name: Debug Release Notes File
         run: |
           echo "Contents of release_notes.txt:"
