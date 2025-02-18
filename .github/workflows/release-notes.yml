@@ -35,8 +35,13 @@ jobs:
 
       - name: Generate Git Diff
         run: git diff $PREVIOUS_RELEASE $LATEST_RELEASE > git_diff.txt
+        
+      - name: Debug Git Diff Output
+        run: |
+          git diff $PREVIOUS_RELEASE $LATEST_RELEASE > git_diff.txt
+          cat git_diff.txt
 
-      - name: Call Groq API to Generate Release Notes
+      - name: Debug Groq API Response
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
@@ -57,7 +62,7 @@ jobs:
           EOF
           )
 
-          RESPONSE=$(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \
+          FULL_RESPONSE=$(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \
             -H "Authorization: Bearer $GROQ_API_KEY" \
             -H "Content-Type: application/json" \
             -d '{
@@ -66,9 +71,18 @@ jobs:
                 {"role": "user", "content": "'"$PROMPT"'"}
               ],
               "model": "llama-3.3-70b-versatile"
-            }' | jq -r '.choices[0].message.content')
+            }')
 
+          echo "Full API Response:"
+          echo "$FULL_RESPONSE"
+
+          RESPONSE=$(echo "$FULL_RESPONSE" | jq -r '.choices[0].message.content')
           echo "$RESPONSE" > release_notes.txt
+
+      - name: Debug Release Notes File
+        run: |
+          echo "Contents of release_notes.txt:"
+          cat release_notes.txt
 
       - name: Upload AI-Generated Release Notes
         uses: actions/upload-artifact@v4
