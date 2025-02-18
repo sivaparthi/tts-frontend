@@ -71,7 +71,7 @@ jobs:
           echo "$RESPONSE" > release_notes.txt
 
       - name: Upload AI-Generated Release Notes
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-notes
           path: release_notes.txt
