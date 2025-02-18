@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/sivaparthi/tts-frontend/compare/v1.1.0...v1.1.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* Dockerfile ([a4ea30b](https://github.com/sivaparthi/tts-frontend/commit/a4ea30b2ac79375da040b5597d9d2db5ce053a16))
+* fix release ([9a7ea76](https://github.com/sivaparthi/tts-frontend/commit/9a7ea7692386594225b18f75fc09bd49b4efcab0))
+* updated ball color ([3b25669](https://github.com/sivaparthi/tts-frontend/commit/3b25669c0b7c80550bbb49a24907264454fe03df))
+
 # [1.1.0](https://github.com/sivaparthi/tts-frontend/compare/v1.0.2...v1.1.0) (2025-02-05)
 
 
