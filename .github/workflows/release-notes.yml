@@ -1,0 +1,76 @@
+name: Generate AI-Powered Release Notes
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  generate-release-notes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all tags to compare releases
+
+      - name: Install jq (JSON Parser)
+        run: sudo apt-get install jq
+
+      - name: Get Latest and Previous Releases
+        run: |
+          # Fetch the latest release tag
+          LATEST_RELEASE=$(curl -s "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
+
+          # Fetch the second latest release tag (previous release)
+          PREVIOUS_RELEASE=$(curl -s "https://api.github.com/repos/${{ github.repository }}/releases" | jq -r '.[1].tag_name')
+
+          echo "Latest Release: $LATEST_RELEASE"
+          echo "Previous Release: $PREVIOUS_RELEASE"
+
+          # Store them as environment variables for later steps
+          echo "LATEST_RELEASE=$LATEST_RELEASE" >> $GITHUB_ENV
+          echo "PREVIOUS_RELEASE=$PREVIOUS_RELEASE" >> $GITHUB_ENV
+
+      - name: Generate Git Diff
+        run: git diff $PREVIOUS_RELEASE $LATEST_RELEASE > git_diff.txt
+
+      - name: Call Groq API to Generate Release Notes
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          PROMPT=$(cat <<EOF
+          Generate structured release notes based on the following code changes between versions $PREVIOUS_RELEASE and $LATEST_RELEASE.
+
+          Changes:
+          $(cat git_diff.txt)
+
+          Format the release notes in markdown with these sections:
+          - **New Features**
+          - **Improvements**
+          - **Bug Fixes**
+          - **Breaking Changes** (if any)
+          - **Other Changes**
+
+          Ensure the release notes are **clear, concise, and developer-friendly**.
+          EOF
+          )
+
+          RESPONSE=$(curl -s -X POST "https://api.groq.com/openai/v1/chat/completions" \
+            -H "Authorization: Bearer $GROQ_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "messages": [
+                {"role": "system", "content": "You are an AI assistant that generates structured and developer-friendly release notes from code changes."},
+                {"role": "user", "content": "'"$PROMPT"'"}
+              ],
+              "model": "llama-3.3-70b-versatile"
+            }' | jq -r '.choices[0].message.content')
+
+          echo "$RESPONSE" > release_notes.txt
+
+      - name: Upload AI-Generated Release Notes
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-notes
+          path: release_notes.txt

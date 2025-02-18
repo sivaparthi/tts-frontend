@@ -49,3 +49,28 @@ module.exports = {
   ],
   plugins
 };
+
+
+// module.exports = {
+//     branches: [
+//       'dev', // Your default branch
+//       { name: 'prod', prerelease: false },
+//       { name: 'new_uat', prerelease: 'uat' },
+//       { name: 'new_qa', prerelease: 'qa' },
+//       { name: 'new_qa', prerelease: 'new_qa' } // Add new_qa to recognized branches
+//     ],
+//     plugins: [
+//       '@semantic-release/commit-analyzer',
+//       '@semantic-release/release-notes-generator',
+//       '@semantic-release/changelog',
+//       [
+//         '@semantic-release/git',
+//         {
+//           assets: ['CHANGELOG.md', 'package.json'],
+//           message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+//         }
+//       ],
+//       '@semantic-release/github'
+//     ]
+//   };
+  
