@@ -14,7 +14,7 @@ jobs:
           script: |
             const pr = context.payload.pull_request;
             const title = pr.title;
-            const validPrefixes = ['feat:', 'fix:', 'chore:', 'docs:', 'style:', 'refactor:', 'test:', 'perf:', 'build:', 'ci:'];
+            const validPrefixes = ['feat:', 'fix:', 'chore:', 'docs:', 'style:', 'refactor:', 'test:', 'perf:', 'build:', 'ci:', 'BREAKING CHANGE:'];
             const isValid = validPrefixes.some(prefix => title.toLowerCase().startsWith(prefix));
             if (!isValid) {
               core.setFailed(`PR title must start with one of the following prefixes: ${validPrefixes.join(', ')}`);
