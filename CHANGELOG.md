@@ -1,3 +1,28 @@
+# [2.0.0](https://github.com/sivaparthi/tts-frontend/compare/v1.3.0...v2.0.0) (2025-02-20)
+
+
+* BREAKING CHANGE: Production Release ([18bbb94](https://github.com/sivaparthi/tts-frontend/commit/18bbb9443cf0d80cd7be0affa030a65ddc64af16))
+
+
+### Bug Fixes
+
+* changed ball color ([d36f92f](https://github.com/sivaparthi/tts-frontend/commit/d36f92f75ed382246ab0cf9dc8e72e0e3c2da6ba))
+* workflow change ([48061a1](https://github.com/sivaparthi/tts-frontend/commit/48061a1f04f254c317e070d3933d5344f92cffae))
+* workflow change ([0d9ba38](https://github.com/sivaparthi/tts-frontend/commit/0d9ba385b1dbf8a1fe2f7bf875c4805972e6ecbe))
+* workflow debug ([fe03a90](https://github.com/sivaparthi/tts-frontend/commit/fe03a909b7c91472b361aea69691ab3dc3e2a873))
+* workflow debug ([bcdffe8](https://github.com/sivaparthi/tts-frontend/commit/bcdffe8eaeb2a3d5d2f64d81928995c75e728bd6))
+* workflow debug ([acbfc65](https://github.com/sivaparthi/tts-frontend/commit/acbfc655363011f8984ac474007cc6852035447f))
+
+
+### Features
+
+* Uat Realease ([5ba06dd](https://github.com/sivaparthi/tts-frontend/commit/5ba06ddda3ee11076c2e01b83676a05fc7724bb2))
+
+
+### BREAKING CHANGES
+
+* Production Release
+
 # [1.3.0](https://github.com/sivaparthi/tts-frontend/compare/v1.2.0...v1.3.0) (2025-02-18)
 
 
